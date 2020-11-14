@@ -10,7 +10,7 @@ namespace GameOfCardsTests
         [Author("Siphamandla Dube")]
         public void Hand_Param_CTOR_ShouldReturnSetValues()
         {
-            var sut = new Hand(new Player());
+            var sut = new Hand();
 
             Assert.IsTrue(sut.TotalValue is 0);
             Assert.IsTrue(sut.Count is 0);
@@ -25,7 +25,7 @@ namespace GameOfCardsTests
                 { "Diamonds-2", "2" } 
             });
 
-            var sut = new Hand(new Player());
+            var sut = new Hand();
             
             var result = sut.Add(card);
 
@@ -33,6 +33,7 @@ namespace GameOfCardsTests
 
             Assert.IsTrue(sut.TotalValue is 2);
             Assert.IsTrue(sut.Count is 1);
+            Assert.IsTrue(sut.RemainingCount is 16);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Game_Of_Cards
             _players = new List<IPlayer>();
         }
 
-        public IPlayer Winner { get; set; }
+        public IPlayer Winner { get; private set; }
         public bool IsGameOver { get; private set; }
 
         public void AddPlayer(IPlayer player)

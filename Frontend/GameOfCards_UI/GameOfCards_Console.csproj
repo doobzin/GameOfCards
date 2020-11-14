@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Backend\GameOfCards.Interfaces\GameOfCards.Interfaces.csproj" />
     <ProjectReference Include="..\..\Backend\GameOfCards\GameOfCards.csproj" />
   </ItemGroup>
 

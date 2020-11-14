@@ -12,7 +12,7 @@ namespace Game_Of_Cards
         public Dealer(string name)
         {
             Name = name;
-            Hand = new Hand(this);
+            Hand = new Hand();
         }
 
         public string Name { get; private set; }
