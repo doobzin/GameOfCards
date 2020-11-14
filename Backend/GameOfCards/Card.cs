@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Game_Of_Cards.Interfaces;
+using System.Collections.Generic;
 
 namespace Game_Of_Cards
 {
-    public class Card
+    public class Card : ICard
     {
         private readonly Dictionary<string, string> _dictionary;
 

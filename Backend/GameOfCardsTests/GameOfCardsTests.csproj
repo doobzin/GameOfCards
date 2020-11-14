@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameOfCards.Interfaces\GameOfCards.Interfaces.csproj" />
     <ProjectReference Include="..\GameOfCards\GameOfCards.csproj" />
   </ItemGroup>
 

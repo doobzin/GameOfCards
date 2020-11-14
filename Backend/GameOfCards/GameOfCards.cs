@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game_Of_Cards.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,21 +7,19 @@ namespace Game_Of_Cards
 {
     public class GameOfCards
     {
-        private readonly Generator _generator;
-
         public GameOfCards(ScoreBoard scoreboard)
         {
-            _generator = new Generator();
+            var generator = new Generator();
+            CurrentDeck = generator.Deck;
+            
             ScoreBoard = scoreboard;
-
-            CurrentDeck = _generator.Deck;
             CanStillDeal = true;
         }
 
         public IDictionary<string, string> CurrentDeck { get; private set; }
         public bool CanStillDeal { get; private set; }
 
-        public ScoreBoard ScoreBoard { get; private set; }
+        public IScoreBoard ScoreBoard { get; private set; }
 
         public void DealTo(IPlayer player)
         {
@@ -37,7 +36,6 @@ namespace Game_Of_Cards
                 var card = selectedCard.FromKeyValuePair();
                 player.RecieveCard(card);
             }
-            
         }
 
         private void UpdateScoreBoard(IPlayer player)
@@ -46,9 +44,8 @@ namespace Game_Of_Cards
 
             if (ScoreBoard.IsGameOver)
             {
-                CanStillDeal = true;
+                CanStillDeal = false;
             }
-            CanStillDeal = false;
         }
 
         private void UpdateCurrentDeck(List<KeyValuePair<string, string>> listOfCards, KeyValuePair<string, string> selectedCard)

@@ -46,9 +46,89 @@ namespace GameOfCardsTests
 
             Assert.IsTrue(sut.CanStillDeal);
             Assert.IsTrue(sut.CurrentDeck.Count is 52);
-            Assert.IsTrue(sut.ScoreBoard.IsGameOver is false);
-            Assert.IsTrue(sut.ScoreBoard.WinnerTotalScore is 0);
+            Assert.IsTrue(scoreboard.IsGameOver is false);
+            Assert.IsNull(scoreboard.Winner);
         }
 
+        [Test]
+        [Author("Siphamandla Dube")]
+        public void GameOfCards_PlayerHandCount_GreaterThen_21_ShouldWin()
+        {
+            var player = new Player();
+            var dealer = new Dealer();
+
+            var scoreboard = new ScoreBoard();
+            scoreboard.AddPlayer(player);
+            scoreboard.AddPlayer(dealer);
+
+            var sut = new GameOfCards(scoreboard);
+
+            var times = sut.CurrentDeck.Count;
+
+            for (int i = 0; i < times; i++)
+            {
+                sut.DealTo(player);
+            }
+
+            Assert.IsFalse(sut.CanStillDeal);
+            Assert.IsTrue(sut.CurrentDeck.Count is 31);
+            Assert.IsTrue(scoreboard.IsGameOver is true);
+            Assert.AreEqual(player, scoreboard.Winner);
+        }
+
+        [Test]
+        [Author("Siphamandla Dube")]
+        public void GameOfCards_DealerHandCount_GreaterThen_17_ShouldWin()
+        {
+            var player = new Player();
+            var dealer = new Dealer();
+
+            var scoreboard = new ScoreBoard();
+            scoreboard.AddPlayer(player);
+            scoreboard.AddPlayer(dealer);
+
+            var sut = new GameOfCards(scoreboard);
+
+            var times = sut.CurrentDeck.Count;
+
+            for (int i = 0; i < times; i++)
+            {
+                sut.DealTo(dealer);
+            }
+
+            Assert.IsFalse(sut.CanStillDeal);
+            Assert.IsTrue(sut.CurrentDeck.Count is 35);
+            Assert.IsTrue(scoreboard.IsGameOver is true);
+            Assert.AreEqual(dealer, scoreboard.Winner);
+        }
+
+        [Test]
+        [Author("Siphamandla Dube")]
+        public void GameOfCards_Dealer_Vs_Player_And_Player_ShouldWin()
+        {
+            var player = new Player();
+            var dealer = new Dealer();
+
+            var scoreboard = new ScoreBoard();
+            scoreboard.AddPlayer(player);
+            scoreboard.AddPlayer(dealer);
+
+            var sut = new GameOfCards(scoreboard);
+
+            var times = sut.CurrentDeck.Count;
+
+            for (int i = 0; i < times; i++)
+            {
+                sut.DealTo(dealer);
+                sut.DealTo(player);
+                sut.DealTo(player);
+                sut.DealTo(player);
+            }
+
+            Assert.IsFalse(sut.CanStillDeal);
+            Assert.IsTrue(sut.CurrentDeck.Count is 24);
+            Assert.IsTrue(scoreboard.IsGameOver is true);
+            Assert.AreEqual(player, scoreboard.Winner);
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace GameOfCardsTests
 
             var sut = new Hand(new Player());
             
-            List<Card> result = sut.Add(card);
+            var result = sut.Add(card);
 
             Assert.IsTrue(result.Count is 1);
 

@@ -1,4 +1,6 @@
-﻿namespace Game_Of_Cards
+﻿using Game_Of_Cards.Interfaces;
+
+namespace Game_Of_Cards
 {
     public class Dealer : PlayerBase, IPlayer
     {
@@ -17,6 +19,5 @@
 
         public int Score { get => Hand.TotalValue; } 
 
-        
     }
 }

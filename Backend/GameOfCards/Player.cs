@@ -1,4 +1,6 @@
-﻿namespace Game_Of_Cards
+﻿using Game_Of_Cards.Interfaces;
+
+namespace Game_Of_Cards
 {
     public class Player : PlayerBase, IPlayer
     {
@@ -12,7 +14,6 @@
             Name = name;
             Hand = new Hand(this);
         }
-
 
         public string Name { get; set; }
 

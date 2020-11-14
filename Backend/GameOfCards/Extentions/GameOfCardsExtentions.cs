@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Game_Of_Cards.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Game_Of_Cards
@@ -23,7 +24,7 @@ namespace Game_Of_Cards
             return new Card(cardName, cardValue);
         }
 
-        public static Card FromKeyValuePair(this KeyValuePair<string, string> keyValuePair)
+        public static ICard FromKeyValuePair(this KeyValuePair<string, string> keyValuePair)
         {
             var cardName = keyValuePair.Key;
             var cardValue = keyValuePair.Value;
