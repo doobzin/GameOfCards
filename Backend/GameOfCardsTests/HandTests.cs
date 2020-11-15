@@ -33,7 +33,6 @@ namespace GameOfCardsTests
 
             Assert.IsTrue(sut.TotalValue is 2);
             Assert.IsTrue(sut.Count is 1);
-            Assert.IsTrue(sut.RemainingCount is 16);
         }
     }
 }

@@ -17,14 +17,12 @@ namespace Game_Of_Cards
 
         public int TotalValue { get; private set; }
         public int Count { get; private set; }
-        public int RemainingCount { get; private set; } = 17;
 
         public List<ICard> Add(ICard card)
         {
             _cards.Add(card);
 
             Count++;
-            RemainingCount--;
             TotalValue += card.Value;
 
             return _cards;

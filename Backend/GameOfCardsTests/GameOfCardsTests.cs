@@ -1,6 +1,9 @@
 ﻿
 using Game_Of_Cards;
+using Game_Of_Cards.Interfaces;
+using Game_Of_Cards.RulesEngine;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace GameOfCardsTests
 {
@@ -10,7 +13,7 @@ namespace GameOfCardsTests
         [Author("Siphamandla Dube")]
         public void GameOfCards_Player_Score_ShouldUpdate()
         {
-            var scoreboard = new ScoreBoard();
+            var scoreboard = new ScoreBoard(new IRule[] { });
 
             var sut = new GameOfCards(scoreboard);
 
@@ -25,7 +28,7 @@ namespace GameOfCardsTests
         [Author("Siphamandla Dube")]
         public void GameOfCards_CurrentDeck_ShouldRemoveSelectedCard()
         {
-            var scoreboard = new ScoreBoard();
+            var scoreboard = new ScoreBoard(new IRule[] { });
 
             var sut = new GameOfCards(scoreboard);
 
@@ -40,7 +43,7 @@ namespace GameOfCardsTests
         [Author("Siphamandla Dube")]
         public void GameOfCards_ScoreBoard_CTOR_ShouldDefalt()
         {
-            var scoreboard = new ScoreBoard();
+            var scoreboard = new ScoreBoard(new IRule[] { });
 
             var sut = new GameOfCards(scoreboard);
 
@@ -57,7 +60,12 @@ namespace GameOfCardsTests
             var player = new Player();
             var dealer = new Dealer();
 
-            var scoreboard = new ScoreBoard();
+            var rules = new IRule[]
+            {
+                new Game2117Rules(new List<IPlayer> { player, dealer })
+            };
+
+            var scoreboard = new ScoreBoard(rules);
             scoreboard.AddPlayer(player);
             scoreboard.AddPlayer(dealer);
 
@@ -83,7 +91,12 @@ namespace GameOfCardsTests
             var player = new Player();
             var dealer = new Dealer();
 
-            var scoreboard = new ScoreBoard();
+            var rules = new IRule[]
+            {
+                new Game2117Rules(new List<IPlayer> { player, dealer })
+            };
+
+            var scoreboard = new ScoreBoard(rules);
             scoreboard.AddPlayer(player);
             scoreboard.AddPlayer(dealer);
 
@@ -109,7 +122,12 @@ namespace GameOfCardsTests
             var player = new Player();
             var dealer = new Dealer();
 
-            var scoreboard = new ScoreBoard();
+            var rules = new IRule[]
+            {
+                new Game2117Rules(new List<IPlayer> { player, dealer })
+            };
+
+            var scoreboard = new ScoreBoard(rules);
             scoreboard.AddPlayer(player);
             scoreboard.AddPlayer(dealer);
 

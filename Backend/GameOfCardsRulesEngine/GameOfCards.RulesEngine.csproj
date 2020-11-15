@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameOfCards.Interfaces\GameOfCards.Interfaces.csproj" />
-    <ProjectReference Include="..\GameOfCardsRulesEngine\GameOfCards.RulesEngine.csproj" />
   </ItemGroup>
 
 </Project>

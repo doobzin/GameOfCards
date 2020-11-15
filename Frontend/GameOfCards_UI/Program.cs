@@ -1,5 +1,8 @@
 ﻿using Game_Of_Cards;
+using Game_Of_Cards.Interfaces;
+using Game_Of_Cards.RulesEngine;
 using System;
+using System.Collections.Generic;
 
 namespace GameOfCards_Console
 {
@@ -13,7 +16,13 @@ namespace GameOfCards_Console
             var player = new Player(username);
 
             var dealer = new Dealer("Dealer");
-            var scoreboard = new ScoreBoard();
+
+            var rules = new IRule[]
+            {
+                new Game2117Rules(new List<IPlayer> { player, dealer })
+            };
+
+            var scoreboard = new ScoreBoard(rules);
             scoreboard.AddPlayer(dealer);
             scoreboard.AddPlayer(player);
 

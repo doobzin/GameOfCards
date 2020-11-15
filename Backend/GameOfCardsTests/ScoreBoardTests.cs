@@ -1,5 +1,8 @@
 ﻿using Game_Of_Cards;
+using Game_Of_Cards.Interfaces;
+using Game_Of_Cards.RulesEngine;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace GameOfCardsTests
 {
@@ -7,11 +10,20 @@ namespace GameOfCardsTests
     {
         [Test]
         [Author("Siphamandla Dube")]
-        public void GameOfCards_CurrentDeck_ShouldRemoveSelectedCard1()
+        public void ScoreBoard_CurrentDeck_ShouldRemoveSelectedCard1()
         {
-            var sut = new ScoreBoard();
+            var player = new Player();
+            var dealer = new Dealer();
 
-            sut.AddPlayer(new Player());
+            var rules = new IRule[]
+            {
+                new Game2117Rules(new List<IPlayer> { player, dealer })
+            };
+
+            var sut = new ScoreBoard(rules);
+
+            sut.AddPlayer(player);
+            sut.AddPlayer(dealer);
         }
     }
 }

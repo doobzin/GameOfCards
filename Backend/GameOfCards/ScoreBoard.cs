@@ -1,5 +1,6 @@
 ﻿
 using Game_Of_Cards.Interfaces;
+using Game_Of_Cards.RulesEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,14 +9,16 @@ namespace Game_Of_Cards
     public class ScoreBoard : IScoreBoard
     {
         private readonly List<IPlayer> _players;
+        private readonly RuleEvaluator _ruleEvaluator;
 
-        public ScoreBoard()
+        public ScoreBoard(IRule[] rules)
         {
             _players = new List<IPlayer>();
+            _ruleEvaluator = new RuleEvaluator(rules);
         }
 
-        public IPlayer Winner { get; private set; }
-        public bool IsGameOver { get; private set; }
+        public IPlayer Winner { get; set; }
+        public bool IsGameOver { get; set; }
 
         public void AddPlayer(IPlayer player)
         {
@@ -24,25 +27,18 @@ namespace Game_Of_Cards
 
         public void UpdateGameStatus(IPlayer player)
         {
-            var currentPlayer = _players.Find(o => o.Name == player.Name);
-            if (currentPlayer != null)
-            {
-                if (currentPlayer.GetType().Name is nameof(Dealer) && currentPlayer.Hand.Count >= 16)
-                {
-                    GameOver();
-                }
-                else if (currentPlayer.GetType().Name is nameof(Player) && currentPlayer.Hand.Count >= 20)
-                {
-                    GameOver();
-                }
-            }
-        }
+            var context = new Context
+            { 
+                CurrentPlayer = player 
+            };
 
-        private void GameOver()
-        {
-            var highScore = _players.Max(o => o.Score);
-            Winner = _players.First(o => o.Score == highScore);
-            IsGameOver = true;
+            var winner = _ruleEvaluator.Exceute(context).ToList();
+
+            if (winner.Count() != 0)
+            {
+                Winner = winner.First();
+                IsGameOver = true;
+            }
         }
     }
 }
