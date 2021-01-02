@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -13,8 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameOfCards.Interfaces\GameOfCards.Interfaces.csproj" />
+    <ProjectReference Include="..\..\RulesEngine\Plugins\Game2117Rules\Game2117Rules.csproj" />
     <ProjectReference Include="..\GameOfCards\GameOfCards.csproj" />
+    <ProjectReference Include="..\Scoreboard\Scoreboard.Core.Contracts\Scoreboard.Core.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

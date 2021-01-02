@@ -1,6 +1,6 @@
-﻿using Game_Of_Cards.Interfaces;
+﻿using GameRulesEngine.Core.Contracts;
 
-namespace Game_Of_Cards.RulesEngine
+namespace Plugins.Core
 {
     public class Context : IContext
     {

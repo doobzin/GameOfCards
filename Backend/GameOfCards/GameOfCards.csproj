@@ -1,12 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameOfCards.Interfaces\GameOfCards.Interfaces.csproj" />
-    <ProjectReference Include="..\GameOfCardsRulesEngine\GameOfCards.RulesEngine.csproj" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameOfCards.Contracts\GameOfCards.Contracts.csproj" />
+    <ProjectReference Include="..\Scoreboard\Scoreboard.Core.Contracts\Scoreboard.Core.Contracts.csproj" />
+    <ProjectReference Include="..\Scoreboard\Scoreboard.Core\Scoreboard.Core.csproj" />
   </ItemGroup>
 
 </Project>

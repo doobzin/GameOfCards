@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Backend\GameOfCards.Interfaces\GameOfCards.Interfaces.csproj" />
     <ProjectReference Include="..\..\Backend\GameOfCards\GameOfCards.csproj" />
+    <ProjectReference Include="..\..\Backend\Scoreboard\Scoreboard.Core\Scoreboard.Core.csproj" />
+    <ProjectReference Include="..\..\RulesEngine\Plugins\Game2117Rules\Game2117Rules.csproj" />
   </ItemGroup>
 
 </Project>

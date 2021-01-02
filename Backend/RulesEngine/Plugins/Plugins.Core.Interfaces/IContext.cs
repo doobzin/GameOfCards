@@ -1,6 +1,5 @@
-﻿using Game_Of_Cards.Interfaces;
-
-namespace Game_Of_Cards.RulesEngine
+﻿
+namespace Plugins.Core.Interfaces
 {
     public interface IContext
     {

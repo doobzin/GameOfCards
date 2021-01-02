@@ -1,9 +1,8 @@
-﻿
-using Game_Of_Cards.Interfaces;
+﻿using GameRulesEngine.Core.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Game_Of_Cards.RulesEngine
+namespace GameRulesEngine.Core
 {
     public class RuleEvaluator
     {
@@ -18,7 +17,7 @@ namespace Game_Of_Cards.RulesEngine
         {
             return _rules
                 .Where(o => o.IsApplicable(context))
-                .Select(o => o.Execute(context));
+                .Select(o => o.Execute());
         }
     }
 }

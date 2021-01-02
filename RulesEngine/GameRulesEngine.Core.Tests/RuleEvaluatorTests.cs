@@ -1,12 +1,9 @@
-﻿
-using Game_Of_Cards;
-using Game_Of_Cards.Interfaces;
-using Game_Of_Cards.RulesEngine;
+using GameRulesEngine.Core.Contracts;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameOfCardsRuresEngineTests
+namespace GameRulesEngine.Core.Tests
 {
     public class RuleEvaluatorTests
     {
@@ -14,22 +11,13 @@ namespace GameOfCardsRuresEngineTests
         [Author("Siphamandla Dube")]
         public void RuleEvaluator_Exceute_GivenDealer_NotReachedHandCountLimit_ShouldReturnNoWinner()
         {
-            var dealersHand = new Hand();
-
-            dealersHand.Add(new Card("card-4", "4"));
-            dealersHand.Add(new Card("card-10", "10"));
-
-            var playersHand = new Hand();
-            playersHand.Add(new Card("card-J", "10"));
-            playersHand.Add(new Card("card-10", "10"));
-
-            var dealer = new Dealer
+            var dealer = new DealerDto
             {
-                Hand = dealersHand
+                HandCount = 14
             };
-            var player = new Player
+            var player = new PlayerDto
             {
-                Hand = playersHand
+                HandCount = 20
             };
 
             var players = new List<IPlayer>
@@ -40,10 +28,10 @@ namespace GameOfCardsRuresEngineTests
 
             var rules = new IRule[]
                 {
-                    new Game2117Rules(players)
+                    new TestGame2117Rules(players)
                 };
 
-            var context = new Context
+            var context = new ContextDto
             {
                 CurrentPlayer = dealer,
             };
@@ -58,25 +46,15 @@ namespace GameOfCardsRuresEngineTests
         [Author("Siphamandla Dube")]
         public void RuleEvaluator_Exceute_GivenDealer_ReachedHandCountLimit_ShouldReturnWinner()
         {
-            var dealersHand = new Hand();
-
-            for (int i = 0; i < 9; i++)
+            var dealer = new DealerDto
             {
-                dealersHand.Add(new Card("card-4", "4"));
-                dealersHand.Add(new Card("card-10", "10"));
-            }
-
-            var playersHand = new Hand();
-            playersHand.Add(new Card("card-J", "10"));
-            playersHand.Add(new Card("card-10", "10"));
-
-            var dealer = new Dealer
-            {
-                Hand = dealersHand
+                HandCount = 17,
+                Score = 22
             };
-            var player = new Player
+            var player = new PlayerDto
             {
-                Hand = playersHand
+                HandCount = 20,
+                Score = 11
             };
 
             var players = new List<IPlayer>
@@ -87,10 +65,10 @@ namespace GameOfCardsRuresEngineTests
 
             var rules = new IRule[]
                 {
-                    new Game2117Rules(players)
+                    new TestGame2117Rules(players)
                 };
 
-            var context = new Context
+            var context = new ContextDto
             {
                 CurrentPlayer = dealer,
             };

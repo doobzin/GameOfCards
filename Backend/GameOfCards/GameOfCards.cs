@@ -1,4 +1,5 @@
-﻿using Game_Of_Cards.Interfaces;
+﻿using Game_Of_Cards.Contracts;
+using Scoreboard.Core.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace Game_Of_Cards
 {
     public class GameOfCards
     {
-        public GameOfCards(ScoreBoard scoreboard)
+        public GameOfCards(IScoreBoard scoreboard)
         {
             var generator = new Generator();
             CurrentDeck = generator.Deck;
@@ -21,7 +22,7 @@ namespace Game_Of_Cards
 
         public IScoreBoard ScoreBoard { get; private set; }
 
-        public void DealTo(IPlayer player)
+        public void DealTo(IGamePlayer player)
         {
             if (CanStillDeal)
             {
@@ -38,7 +39,7 @@ namespace Game_Of_Cards
             }
         }
 
-        private void UpdateScoreBoard(IPlayer player)
+        private void UpdateScoreBoard(IGamePlayer player)
         {
             ScoreBoard.UpdateGameStatus(player);
 

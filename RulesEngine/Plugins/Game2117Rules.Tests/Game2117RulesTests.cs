@@ -1,11 +1,9 @@
-﻿
-using Game_Of_Cards;
-using Game_Of_Cards.Interfaces;
-using Game_Of_Cards.RulesEngine;
+using GameRulesEngine.Core.Contracts;
 using NUnit.Framework;
+using Plugins.Core;
 using System.Collections.Generic;
 
-namespace GameOfCardsRuresEngineTests
+namespace Plugins.Game_2117_Rules.Tests
 {
     public class Game2117RulesTests
     {
@@ -13,21 +11,13 @@ namespace GameOfCardsRuresEngineTests
         [Author("Siphamandla Dube")]
         public void Game2117Rules_IsApplicable_Then_Execute_IsGameOver_GivenDealerHandCount_NotReached_ShouldReturnFalse()
         {
-            var dealersHand = new Hand();
-            dealersHand.Add(new Card("card-4", "4"));
-            dealersHand.Add(new Card("card-10", "10"));
-
-            var playersHand = new Hand();
-            playersHand.Add(new Card("card-J", "10"));
-            playersHand.Add(new Card("card-10", "10"));
-
             var dealer = new Dealer
             {
-                Hand = dealersHand
+                HandCount = 14,
             };
             var player = new Player
             {
-                Hand = playersHand
+                HandCount = 20
             };
 
             var players = new List<IPlayer>
@@ -44,11 +34,11 @@ namespace GameOfCardsRuresEngineTests
             var sut = new Game2117Rules(players);
 
             var isTheGameOver = sut.IsApplicable(context);
-            
+
             IPlayer winner = null;
             if (isTheGameOver)
             {
-                winner = sut.Execute(context);
+                winner = sut.Execute();
             }
 
             Assert.IsFalse(isTheGameOver);
@@ -59,25 +49,15 @@ namespace GameOfCardsRuresEngineTests
         [Author("Siphamandla Dube")]
         public void Game2117Rules_IsApplicable_Then_Execute_IsGameOver_GivenDealerHandCount_Reached_ShouldReturnTrue()
         {
-            var dealersHand = new Hand();
-
-            for (int i = 0; i < 9; i++)
-            {
-                dealersHand.Add(new Card("card-4", "4"));
-                dealersHand.Add(new Card("card-10", "10"));
-            }
-
-            var playersHand = new Hand();
-            playersHand.Add(new Card("card-J", "10"));
-            playersHand.Add(new Card("card-10", "10"));
-
             var dealer = new Dealer
             {
-                Hand = dealersHand
+                HandCount = 17,
+                Score = 1
             };
             var player = new Player
             {
-                Hand = playersHand
+                HandCount = 20,
+                Score = 0
             };
 
             var players = new List<IPlayer>
@@ -96,7 +76,7 @@ namespace GameOfCardsRuresEngineTests
             var isTheGameOver = sut.IsApplicable(context);
 
             Assert.IsTrue(isTheGameOver);
-            var winner = sut.Execute(context);
+            var winner = sut.Execute();
 
             Assert.IsTrue(isTheGameOver);
             Assert.IsNotNull(winner, "If the game is over, then there should be a winner");
@@ -107,21 +87,13 @@ namespace GameOfCardsRuresEngineTests
         [Author("Siphamandla Dube")]
         public void Game2117Rules_IsApplicable_Then_Execute_IsGameOver_GivenPlayerHandCount_NotReached_ShouldReturnFalse()
         {
-            var dealersHand = new Hand();
-            dealersHand.Add(new Card("card-4", "4"));
-            dealersHand.Add(new Card("card-10", "10"));
-
-            var playersHand = new Hand();
-            playersHand.Add(new Card("card-J", "10"));
-            playersHand.Add(new Card("card-10", "10"));
-
             var dealer = new Dealer
             {
-                Hand = dealersHand
+                HandCount = 10
             };
             var player = new Player
             {
-                Hand = playersHand
+                HandCount = 10
             };
 
             var players = new List<IPlayer>
@@ -142,7 +114,7 @@ namespace GameOfCardsRuresEngineTests
             IPlayer winner = null;
             if (isTheGameOver)
             {
-                winner = sut.Execute(context);
+                winner = sut.Execute();
             }
 
             Assert.IsFalse(isTheGameOver);
@@ -153,25 +125,15 @@ namespace GameOfCardsRuresEngineTests
         [Author("Siphamandla Dube")]
         public void Game2117Rules_IsApplicable_Then_Execute_IsGameOver_GivenPlayerHandCount_Reached_ShouldReturnTrue()
         {
-            var dealersHand = new Hand();
-
-            dealersHand.Add(new Card("card-4", "4"));
-            dealersHand.Add(new Card("card-10", "10"));
-
-            var playersHand = new Hand();
-            for (int i = 0; i < 12; i++)
-            {
-                playersHand.Add(new Card("card-J", "10"));
-                playersHand.Add(new Card("card-10", "10"));
-            }
-
             var dealer = new Dealer
             {
-                Hand = dealersHand
+                HandCount = 14,
+                Score = 0
             };
             var player = new Player
             {
-                Hand = playersHand
+                HandCount = 22,
+                Score = 1
             };
 
             var players = new List<IPlayer>
@@ -190,7 +152,7 @@ namespace GameOfCardsRuresEngineTests
             var isTheGameOver = sut.IsApplicable(context);
 
             Assert.IsTrue(isTheGameOver);
-            var winner = sut.Execute(context);
+            var winner = sut.Execute();
 
             Assert.IsTrue(isTheGameOver);
             Assert.IsNotNull(winner, "If the game is over, then there should be a winner");

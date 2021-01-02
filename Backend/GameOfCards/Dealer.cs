@@ -1,8 +1,8 @@
-﻿using Game_Of_Cards.Interfaces;
+﻿using Game_Of_Cards.Contracts;
 
 namespace Game_Of_Cards
 {
-    public class Dealer : PlayerBase, IPlayer
+    public class Dealer : PlayerBase, IGamePlayer
     {
         public Dealer()
             :this("Dealer")
@@ -17,7 +17,8 @@ namespace Game_Of_Cards
 
         public string Name { get; private set; }
 
-        public int Score { get => Hand.TotalValue; } 
+        public decimal Score { get => Hand.TotalValue; internal set { _ = value; } }
 
+        public int HandCount { get => Hand.Count; set { _ = value; } }
     }
 }

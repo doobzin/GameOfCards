@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\RulesEngine\GameRulesEngine.Core\GameRulesEngine.Core.csproj" />
+    <ProjectReference Include="..\Scoreboard.Core.Contracts\Scoreboard.Core.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,4 @@
-﻿
-using Game_Of_Cards.Interfaces;
+﻿using Game_Of_Cards.Contracts;
 
 namespace Game_Of_Cards
 {

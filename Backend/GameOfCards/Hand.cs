@@ -1,4 +1,4 @@
-﻿using Game_Of_Cards.Interfaces;
+﻿using Game_Of_Cards.Contracts;
 using System.Collections.Generic;
 
 namespace Game_Of_Cards
